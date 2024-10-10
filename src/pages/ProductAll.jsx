@@ -10,7 +10,8 @@ const ProductAll = () => {
   const getProducts = async () => {
     const searchQuery = query.get("q") || "";
     console.log(searchQuery);
-    const url = `http://localhost:3000/products?q=${searchQuery}`;
+    // const url = `http://localhost:3000/products?q=${searchQuery}`;
+    const url = `https://my-json-server.typicode.com/daeundan/Musinsa-Mall/products/?q=${searchQuery}`;
     const response = await fetch(url);
     const data = await response.json();
     setProductList(data);

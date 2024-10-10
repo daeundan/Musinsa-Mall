@@ -30,7 +30,7 @@ const ProductDetail = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
   const getProductDetail = async () => {
-    const url = `http://localhost:3000/products/${id}`;
+    const url = `https://my-json-server.typicode.com/daeundan/Musinsa-Mall/products/${id}`;
     const response = await fetch(url);
     const data = await response.json();
     setProduct(data);
@@ -61,8 +61,22 @@ const ProductDetail = () => {
                 {product && product?.choice ? "Conscious choice" : ""}
               </ProductChoice>
             </Dropdown>
-            <Button variant="danger"></Button>
-            <Button variant="dark"></Button>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                사이즈 선택
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                {product &&
+                  product.size.length > 0 &&
+                  product.size.map((item, index) => (
+                    <Dropdown.Item key={index} href="#/action-1">
+                      {item}
+                    </Dropdown.Item>
+                  ))}
+              </Dropdown.Menu>
+            </Dropdown>
+            <Button variant="danger">장바구니</Button>
+            <Button variant="dark">상품결제</Button>
           </ProductDesc>
         </Col>
       </Row>
